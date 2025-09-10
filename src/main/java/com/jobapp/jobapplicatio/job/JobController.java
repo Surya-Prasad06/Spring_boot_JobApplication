@@ -1,9 +1,6 @@
 package com.jobapp.jobapplicatio.job;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +24,14 @@ public class JobController {
 
        jobService.createJob(job);
        return "successfully added the job";
+    }
+
+    @GetMapping("/jobs/{id}")
+    public  Job getJobById(@PathVariable Long id){
+        Job job = jobService.getJobById(id);
+        if (job != null) {
+        return  job;
+        }
+        return new Job("hyderabad", "0", "0", "test job", "tester", 1L)
     }
 }
