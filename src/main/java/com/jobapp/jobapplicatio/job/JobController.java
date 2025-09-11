@@ -1,5 +1,7 @@
 package com.jobapp.jobapplicatio.job;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,10 +30,12 @@ public class JobController {
 
     @GetMapping("/jobs/{id}")
     public  Job getJobById(@PathVariable Long id){
+
+
         Job job = jobService.getJobById(id);
         if (job != null) {
         return  job;
         }
-        return new Job("hyderabad", "0", "0", "test job", "tester", 1L)
+        return null;
     }
 }
