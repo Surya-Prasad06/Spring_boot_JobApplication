@@ -2,6 +2,8 @@ package com.jobapp.jobapplicatio.job.implementaion;
 
 import com.jobapp.jobapplicatio.job.Job;
 import com.jobapp.jobapplicatio.job.JobService;
+
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -52,6 +54,22 @@ public class JobServiceImplementation implements JobService {
         }
         return false;
     }
+    @Override
+    public boolean updatejob(Long id, Job updatedjob) {
+        // TODO Auto-generated method stub
+        for (Job job : jobs) {
+            if (job.getId().equals(id)) {
+                job.setJobTtitle(updatedjob.getJobTtitle());
+                job.setDescription(updatedjob.getDescription());
+                job.setLocation(updatedjob.getLocation());
+                job.setMaxSalary(updatedjob.getMaxSalary());
+                job.setMinSalary(updatedjob.getMinSalary());
+                return true;
+            }
+            // return false;
+        }
+        return false;
 
+    }
 
 }

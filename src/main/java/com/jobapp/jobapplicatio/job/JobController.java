@@ -4,7 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.JobName;
+
 import java.util.List;
+
+import org.apache.catalina.connector.Response;
 @RestController
 public class JobController {
     public JobController(JobService jobService) {
@@ -33,16 +36,25 @@ public class JobController {
         return new ResponseEntity<Job>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/job/{id}")
 
+    @DeleteMapping("/jobs/{id}")
     public ResponseEntity<String> deleteJob(@PathVariable Long id){
         boolean deleted = jobService.deletebyid(id);
 
         if (deleted){
             return new ResponseEntity<>("job deleted successfully" , HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
 
+    }
+
+    @PutMapping("/job/{id}")
+    public ResponseEntity<?> updatejob(@PathVariable Long id, @RequestBody Job updatedjob){
+        boolean updated = jobService.updatejob(id, updatedjob);
+        if (updated) {
+            return new ResponseEntity<>("updated", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("NOT FOUND", HttpStatus.NOT_FOUND);
     }
 
 }
