@@ -4,8 +4,6 @@ public class Job {
 
     private Long id;
     private String jobTtitle;
-
-
     private String description;
     private String minSalary;
     private String maxSalary;
@@ -36,10 +34,12 @@ public class Job {
         this.jobTtitle = jobTtitle;
     }
 
+
     public String getDescription() {
         return description;
     }
 
+    
     public void setDescription(String description) {
         this.description = description;
     }
