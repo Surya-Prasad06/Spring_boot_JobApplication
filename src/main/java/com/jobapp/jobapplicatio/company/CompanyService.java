@@ -1,5 +1,12 @@
 package com.jobapp.jobapplicatio.company;
 
-public interface CompanyService {
+import java.util.List;
 
+
+public interface CompanyService {
+    List<Company> getAllCompanies();
+    void  createCompany(Company company);
+    boolean updateCompany(Company company, Long id);
+    boolean deletebyid(Long id);
+    Company getJobById(Long id);
 }

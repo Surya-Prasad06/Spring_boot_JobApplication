@@ -2,6 +2,7 @@ package com.jobapp.jobapplicatio.company;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jobapp.jobapplicatio.job.Job;
 
 import jakarta.persistence.Entity;
@@ -20,7 +21,8 @@ public class Company {
     private String description;
 
     // relation between entity
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy="company")
     private List<Job> jobs;
 
     // private List<review> reviews

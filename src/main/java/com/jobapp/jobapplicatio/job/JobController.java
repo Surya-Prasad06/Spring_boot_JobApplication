@@ -3,7 +3,10 @@ package com.jobapp.jobapplicatio.job;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/jobs")
@@ -22,6 +25,7 @@ public class JobController {
     @PostMapping
     public ResponseEntity<String> createJob(@RequestBody Job job) {
         jobService.createJob(job);
+
         return new ResponseEntity<>("Job Added successfully", HttpStatus.CREATED);
     }
 

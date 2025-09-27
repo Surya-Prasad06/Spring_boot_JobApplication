@@ -1,9 +1,12 @@
 package com.jobapp.jobapplicatio.job;
 
+import com.jobapp.jobapplicatio.company.Company;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 
@@ -18,12 +21,23 @@ public class Job {
     private String maxSalary;
     private String location;
 
+    @ManyToOne
+    private Company company;
+
     public Job() {
 
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public Job(String location, String maxSalary, String minSalary, String description, String jobTtitle) {
-        
+
         this.jobTtitle = jobTtitle;
         this.description = description;
         this.minSalary = minSalary;
