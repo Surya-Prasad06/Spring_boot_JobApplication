@@ -13,7 +13,7 @@ import com.jobapp.jobapplicatio.job.JobService;
 public class JobServiceImplementation implements JobService {
     // private List<Job> jobs = new ArrayList<>();
     JobRepository jobrepo;
-    private Long nextId = 1L;
+    
 
     public JobServiceImplementation(JobRepository jobrepo) {
         this.jobrepo = jobrepo;
