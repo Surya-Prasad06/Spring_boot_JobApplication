@@ -1,14 +1,9 @@
 package com.jobapp.jobapplicatio.job;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.print.attribute.standard.JobName;
-
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 
 @RestController
 @RequestMapping("/jobs")

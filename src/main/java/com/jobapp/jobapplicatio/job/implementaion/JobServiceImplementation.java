@@ -1,13 +1,13 @@
 package com.jobapp.jobapplicatio.job.implementaion;
 
-import com.jobapp.jobapplicatio.job.Job;
-import com.jobapp.jobapplicatio.job.JobRepository;
-import com.jobapp.jobapplicatio.job.JobService;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.jobapp.jobapplicatio.job.Job;
+import com.jobapp.jobapplicatio.job.JobRepository;
+import com.jobapp.jobapplicatio.job.JobService;
 
 @Service
 public class JobServiceImplementation implements JobService {
@@ -26,7 +26,7 @@ public class JobServiceImplementation implements JobService {
 
     @Override
     public void createJob(Job job) {
-        job.setId(nextId++);
+        
         jobrepo.save(job);
 
     }
@@ -56,12 +56,11 @@ public class JobServiceImplementation implements JobService {
             job.setLocation(updatedjob.getLocation());
             job.setMaxSalary(updatedjob.getMaxSalary());
             job.setMinSalary(updatedjob.getMinSalary());
+            jobrepo.save(job);
             return true;
         }
-    return false;
+        return false;
+
+    }
 
 }
-
-}
-
-        

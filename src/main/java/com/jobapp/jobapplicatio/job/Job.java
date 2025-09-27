@@ -4,10 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "JobTable")
+
 public class Job {
 
     @Id
@@ -23,8 +22,8 @@ public class Job {
 
     }
 
-    public Job(String location, String maxSalary, String minSalary, String description, String jobTtitle, Long id) {
-        this.id = id;
+    public Job(String location, String maxSalary, String minSalary, String description, String jobTtitle) {
+        
         this.jobTtitle = jobTtitle;
         this.description = description;
         this.minSalary = minSalary;
