@@ -37,7 +37,7 @@ public class CompanyController {
     @GetMapping("/{id}")
     public ResponseEntity<Company> getJobById(@PathVariable Long id) {
 
-        Company company = companyService.getJobById(id);
+        Company company = companyService.getCompanyById(id);
         if (company != null) {
             return new ResponseEntity<Company>(company, HttpStatus.OK);
         }
