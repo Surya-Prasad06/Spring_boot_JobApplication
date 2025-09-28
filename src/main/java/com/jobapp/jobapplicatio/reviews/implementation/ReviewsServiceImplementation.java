@@ -1,13 +1,13 @@
 package com.jobapp.jobapplicatio.reviews.implementation;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobapp.jobapplicatio.company.Company;
 import com.jobapp.jobapplicatio.company.CompanyService;
-
 import com.jobapp.jobapplicatio.reviews.Reviews;
 import com.jobapp.jobapplicatio.reviews.ReviewsRepository;
 import com.jobapp.jobapplicatio.reviews.ReviewsService;
@@ -61,5 +61,31 @@ public class ReviewsServiceImplementation implements ReviewsService {
             return false;
         }
     }
+
+    @Override
+public boolean deleteReview(Long companyId, Long reviewId) {
+    Optional<Company> companyOpt = Optional.ofNullable(companyService.getCompanyById(companyId));
+    Optional<Reviews> reviewOpt = reviewsRepository.findById(reviewId);
+
+    if (companyOpt.isPresent() && reviewOpt.isPresent()) {
+        Company company = companyOpt.get();
+        Reviews review = reviewOpt.get();
+
+        // Ensure that the review belongs to this company
+        if (review.getCompany().getId().equals(companyId)) {
+            company.getReviews().remove(review);
+
+            // Delete review explicitly (unless orphanRemoval is enabled)
+            reviewsRepository.delete(review);
+
+            // Update company (optional if cascade is set properly)
+            companyService.updateCompany(company, companyId);
+
+            return true;
+        }
+    }
+    return false;
+}
+
 
 }
